@@ -49,13 +49,19 @@ print(f"Min: {subregion_min} (Average GDP: {subregion_dataframe.min()})")
 
 
 
+filters = {
+    "continent": set(),
+    "region_un": set(),
+    "subregion": set(),
+    "type": set()
+}
+
 while True:
     print("----------MAIN MENU----------")
     print("")
-    print("Active filters: ")
+    print(f"Active filters: {filters}")
     print("Showing ")
     print("")
-
 
 
     print("1. Add Filter")
@@ -66,5 +72,56 @@ while True:
     print("-----------------------------")
 
     choice = input("> ")
-    if choice == ("5" or "Exit"):
+    if choice == ("5"):
         break
+    elif choice == ("1"):
+        print("Filter Categories: ")
+        print("1. Continent")
+        print("2. Region")
+        print("3. Subregion")
+        print("4. Type")
+        print("")
+
+        filter_category_choice = input("> ")
+
+
+        if filter_category_choice == ("1"):
+            print("Continent Filters to Add: ")
+            continent_options = sorted(worldData_cleaned["continent"].dropna().unique())
+            for i, continent_name in enumerate(continent_options, start=1):
+                print(f"{i}. {continent_name}")
+
+            continent_choice = input("> ")
+            if continent_choice.isdigit() and 1 <= int(continent_choice) <= len(continent_options):
+                filters["continent"].add(continent_options[int(continent_choice) - 1])
+
+        elif filter_category_choice == ("2"):
+            print("Region Filters to Add: ")
+            region_options = sorted(worldData_cleaned["region_un"].dropna().unique())
+            for i, name in enumerate(region_options, start=1):
+                print(f"{i}. {name}")
+        
+            region_choice = input("> ")
+            if region_choice.isdigit() and 1 <= int(region_choice) <= len(region_options):
+                filters["region_un"].add(region_options[int(region_choice) - 1])
+
+        elif filter_category_choice == ("3"):
+            print("Subregion Filters to Add: ")
+            subregion_options = sorted(worldData_cleaned["subregion"].dropna().unique())
+            for i, name in enumerate(subregion_options, start=1):
+                print(f"{i}. {name}")
+                
+            subregion_choice = input("> ")
+            if subregion_choice.isdigit() and 1 <= int(subregion_choice) <= len(subregion_options):
+                filters["subregion"].add(subregion_options[int(subregion_choice) - 1])
+
+        elif filter_category_choice == ("4"):
+            print("Type Filters to Add: ")
+            type_options = sorted(worldData_cleaned["type"].dropna().unique())
+            for i, name in enumerate(type_options, start=1):
+                print(f"{i}. {name}")
+                        
+            type_choice = input("> ")
+            if type_choice.isdigit() and 1 <= int(type_choice) <= len(type_options):
+                filters["type"].add(type_options[int(type_choice) - 1])
+
