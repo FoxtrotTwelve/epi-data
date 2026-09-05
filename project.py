@@ -39,10 +39,32 @@ print("Country with Highest Life Expectency: " + highest_life_exp)
 
 
 #Which subregion has the lowest / highest average GDP per capita?
-subregion_dataframe = worldData_cleaned.groupby('subregion')['gdpPercap'].mean()
-print(subregion_dataframe)
-subregion_max = subregion_dataframe.idxmax()
-subregion_min = subregion_dataframe.idxmin()
+subregion_dataframe = worldData_cleaned.groupby('subregion')['gdpPercap'].mean() #makes dataframe based off of subregion and gdp and averages them
+#print(subregion_dataframe)
+subregion_max = subregion_dataframe.idxmax() #finds the maximum gdp and stores associated region
+subregion_min = subregion_dataframe.idxmin() #finds the minimum gdp and stores associated region
 print(f"Max: {subregion_max} (Average GDP: {subregion_dataframe.max()})")
 print(f"Min: {subregion_min} (Average GDP: {subregion_dataframe.min()})")
 
+
+
+
+while True:
+    print("----------MAIN MENU----------")
+    print("")
+    print("Active filters: ")
+    print("Showing ")
+    print("")
+
+
+
+    print("1. Add Filter")
+    print("2. Remove Filter")
+    print("3. Clear All Filters")
+    print("4. View Data with Applied Filters")
+    print("5. Exit")
+    print("-----------------------------")
+
+    choice = input("> ")
+    if choice == ("5" or "Exit"):
+        break
