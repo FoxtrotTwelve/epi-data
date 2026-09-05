@@ -184,3 +184,11 @@ while True:
             type_choice = input("> ")
             if type_choice.isdigit() and 1 <= int(type_choice) <= len(type_options):
                 filters["type"].discard(type_options[int(type_choice) - 1])
+
+
+    elif choice == ("3"):
+        filters["continent"].clear()
+        filters["region_un"].clear()
+        filters["subregion"].clear()
+        filters["type"].clear()
+
