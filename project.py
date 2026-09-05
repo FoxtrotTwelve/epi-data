@@ -56,11 +56,43 @@ filters = {
     "type": set()
 }
 
+rowCount = len(worldData_cleaned)
+
 while True:
     print("----------MAIN MENU----------")
     print("")
-    print(f"Active filters: {filters}")
-    print("Showing ")
+    hasContinentFilters = False
+    hasRegionFilters = False
+    hasSubregionFilters = False
+    hasTypeFilters = False
+    filters_continent_string = ""
+    filters_region_string = ""
+    filters_subregion_string = ""
+    filters_type_string = ""
+    if filters["continent"]:
+        filters_continent_string = filters["continent"]
+        hasContinentFilters = True
+    if filters["region_un"]:
+        filters_region_string = filters["region_un"]
+        hasRegionFilters = True
+    if filters["subregion"]:
+        filters_subregion_string = filters["subregion"]
+        hasSubregionFilters = True
+    if filters["type"]:
+        filters_type_string = filters["type"]
+        hasTypeFilters = True
+
+    hasFilters = False
+    if hasContinentFilters == True or hasRegionFilters == True or hasSubregionFilters == True or hasTypeFilters == True: hasFilters = True
+
+    if hasFilters == False:
+        print(f"Active filters: None")
+    else:
+        print(f"Active filters:")
+        if hasContinentFilters == True: print(f"• Continents: {filters_continent_string}")
+        if hasRegionFilters == True: print(f"• Region: {filters_region_string}")
+        if hasSubregionFilters == True: print(f"• Subregion: {filters_subregion_string}")
+        if hasTypeFilters == True: print(f"• Type: {filters_type_string}")
     print("")
 
 
@@ -191,4 +223,32 @@ while True:
         filters["region_un"].clear()
         filters["subregion"].clear()
         filters["type"].clear()
+
+        rowCount = len(worldData_cleaned)
+
+
+    elif choice == ("4"):
+        print("---Displaying Data with Active Filters---")
+        if hasFilters == False:
+            print(f"Active filters: None")
+        else:
+            print(f"Active filters:")
+            if hasContinentFilters == True: print(f"• Continents: {filters_continent_string}")
+            if hasRegionFilters == True: print(f"• Region: {filters_region_string}")
+            if hasSubregionFilters == True: print(f"• Subregion: {filters_subregion_string}")
+            if hasTypeFilters == True: print(f"• Type: {filters_type_string}")
+        print("")
+
+        filtered_dataframe = worldData_cleaned
+
+        filtered_dataframe = worldData_cleaned
+        for filter_category, set_in_category in filters.items():
+            if set_in_category:
+                filtered_dataframe = filtered_dataframe[filtered_dataframe[filter_category].isin(set_in_category)]
+
+        rowCount = len(filtered_dataframe)
+        print(f"Showing {rowCount} of {len(worldData_cleaned)}")
+
+        print("")
+        print(filtered_dataframe.drop(columns='RowID').to_string(index=False))
 
