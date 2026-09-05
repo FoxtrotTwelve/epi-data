@@ -58,9 +58,12 @@ filters = {
 
 rowCount = len(worldData_cleaned)
 
+#loop to continue to see the menu unless program is exited
 while True:
     print("----------MAIN MENU----------")
     print("")
+
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> shows the active filters converted to strings:
     hasContinentFilters = False
     hasRegionFilters = False
     hasSubregionFilters = False
@@ -94,6 +97,7 @@ while True:
         if hasSubregionFilters == True: print(f"• Subregion: {filters_subregion_string}")
         if hasTypeFilters == True: print(f"• Type: {filters_type_string}")
     print("")
+    #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
     print("1. Add Filter")
@@ -104,9 +108,9 @@ while True:
     print("-----------------------------")
 
     choice = input("> ")
-    if choice == ("5"):
+    if choice == ("5"): #exits program
         break
-    elif choice == ("1"):
+    elif choice == ("1"): #presents a menu of filter categories to add
         print("Filter Categories: ")
         print("1. Continent")
         print("2. Region")
@@ -117,7 +121,7 @@ while True:
         filter_category_choice = input("> ")
 
 
-        if filter_category_choice == ("1"):
+        if filter_category_choice == ("1"): #adds continent filter
             print(f"Current Continent Filters: {filters["continent"]}")
             print("Continent Filters to Add: ")
             continent_options = sorted(worldData_cleaned["continent"].dropna().unique())
@@ -128,7 +132,7 @@ while True:
             if continent_choice.isdigit() and 1 <= int(continent_choice) <= len(continent_options):
                 filters["continent"].add(continent_options[int(continent_choice) - 1])
 
-        elif filter_category_choice == ("2"):
+        elif filter_category_choice == ("2"): #adds region filter
             print(f"Current Region Filters: {filters["region_un"]}")
             print("Region Filters to Add: ")
             region_options = sorted(worldData_cleaned["region_un"].dropna().unique())
@@ -139,7 +143,7 @@ while True:
             if region_choice.isdigit() and 1 <= int(region_choice) <= len(region_options):
                 filters["region_un"].add(region_options[int(region_choice) - 1])
 
-        elif filter_category_choice == ("3"):
+        elif filter_category_choice == ("3"): #adds subregion filter
             print(f"Current Subregion Filters: {filters["subregion"]}")
             print("Subregion Filters to Add: ")
             subregion_options = sorted(worldData_cleaned["subregion"].dropna().unique())
@@ -150,7 +154,7 @@ while True:
             if subregion_choice.isdigit() and 1 <= int(subregion_choice) <= len(subregion_options):
                 filters["subregion"].add(subregion_options[int(subregion_choice) - 1])
 
-        elif filter_category_choice == ("4"):
+        elif filter_category_choice == ("4"): #adds type filter
             print(f"Current Type Filters: {filters["type"]}")
             print("Type Filters to Add: ")
             type_options = sorted(worldData_cleaned["type"].dropna().unique())
@@ -162,7 +166,7 @@ while True:
                 filters["type"].add(type_options[int(type_choice) - 1])
 
 
-    elif choice == ("2"):
+    elif choice == ("2"): #presents filter categories that can be removed
         print("Filter Categories to Remove: ")
         print("1. Continent")
         print("2. Region")
@@ -173,7 +177,7 @@ while True:
         filter_category_choice = input("> ")
 
 
-        if filter_category_choice == ("1"):
+        if filter_category_choice == ("1"): #removes continent filter
             print(f"Current Continent Filters: {filters["continent"]}")
             print("Continent Filters to Remove: ")
             continent_options = sorted(worldData_cleaned["continent"].dropna().unique())
@@ -184,7 +188,7 @@ while True:
             if continent_choice.isdigit() and 1 <= int(continent_choice) <= len(continent_options):
                 filters["continent"].discard(continent_options[int(continent_choice) - 1])
 
-        elif filter_category_choice == ("2"):
+        elif filter_category_choice == ("2"): #removes region filter
             print(f"Current Region Filters: {filters["region_un"]}")
             print("Region Filters to Remove: ")
             region_options = sorted(worldData_cleaned["region_un"].dropna().unique())
@@ -195,7 +199,7 @@ while True:
             if region_choice.isdigit() and 1 <= int(region_choice) <= len(region_options):
                 filters["region_un"].discard(region_options[int(region_choice) - 1])
 
-        elif filter_category_choice == ("3"):
+        elif filter_category_choice == ("3"): #removes subregion filter
             print(f"Current Continent Filters: {filters["subregion"]}")
             print("Subregion Filters to Remove: ")
             subregion_options = sorted(worldData_cleaned["subregion"].dropna().unique())
@@ -206,7 +210,7 @@ while True:
             if subregion_choice.isdigit() and 1 <= int(subregion_choice) <= len(subregion_options):
                 filters["subregion"].discard(subregion_options[int(subregion_choice) - 1])
 
-        elif filter_category_choice == ("4"):
+        elif filter_category_choice == ("4"): #removes type filter
             print(f"Current Type Filters: {filters["type"]}")
             print("Type Filters to Remove: ")
             type_options = sorted(worldData_cleaned["type"].dropna().unique())
@@ -218,7 +222,7 @@ while True:
                 filters["type"].discard(type_options[int(type_choice) - 1])
 
 
-    elif choice == ("3"):
+    elif choice == ("3"): #clears filters
         filters["continent"].clear()
         filters["region_un"].clear()
         filters["subregion"].clear()
@@ -227,7 +231,7 @@ while True:
         rowCount = len(worldData_cleaned)
 
 
-    elif choice == ("4"):
+    elif choice == ("4"): #displays filtered data
         print("---Displaying Data with Active Filters---")
         if hasFilters == False:
             print(f"Active filters: None")
