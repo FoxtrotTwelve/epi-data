@@ -27,5 +27,11 @@ st.subheader("Countries:")
 st.dataframe(worldData_filtered.drop(columns='RowID'), hide_index=True) #better to use this because it can take parameters to drop columns
 #st.write(worldData_filtered.drop(columns='RowID'))
 
+st.write("")
+
+#Displays the stats:
+st.subheader("Statistics Summary")
+st.dataframe(worlddata.get_summary_statistics(worldData_filtered))
+
 
 
