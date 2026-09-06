@@ -9,13 +9,23 @@ worldData_cleaned = cached_load()
 
 st.title("World Data Interface")
 
+FILTER_LABELS = {   #needed to make the filter display look better
+    'continent': 'Continent',
+    'region_un': 'Region',
+    'subregion': 'Subregion',
+    'type':      'Type',
+}
+
 filters = {}
-for column in ['continent', 'region_un', 'subregion', 'type']:
-    filters[column] = st.sidebar.multiselect(column, sorted(worldData_cleaned[column].dropna().unique()))
+for column, label in FILTER_LABELS.items():
+    filters[column] = st.sidebar.multiselect(label, sorted(worldData_cleaned[column].dropna().unique()))
 worldData_filtered = worlddata.get_filtered_dataframe(worldData_cleaned, filters)
 
+#Displays the filtered data grid:
 st.write(f"Showing {len(worldData_filtered)} of {len(worldData_cleaned)} countries")
-st.write(worldData_filtered)
+st.subheader("Countries:")
+st.dataframe(worldData_filtered.drop(columns='RowID'), hide_index=True) #better to use this because it can take parameters to drop columns
+#st.write(worldData_filtered.drop(columns='RowID'))
 
 
 
