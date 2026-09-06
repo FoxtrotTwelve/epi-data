@@ -3,6 +3,7 @@ from pathlib import Path
 
 FILE_PATH = Path(__file__).parent.parent / "worldData.csv"
 OUTPUT_PATH = Path(__file__).parent.parent / "worldData_cleanedOutput.csv"
+STATISTICS_COLUMNS = ['area_km2', 'pop', 'lifeExp', 'gdpPercap']
 
 
 def load_data_and_clean(FILE_PATH=FILE_PATH):
@@ -30,6 +31,11 @@ def get_filtered_dataframe(worldData_filtered, filters):
             worldData_filtered = worldData_filtered[worldData_filtered[column].isin(chosen_values)]
 
     return worldData_filtered
+
+
+def get_summary_statistics(worlddata):
+    statistics = worlddata[STATISTICS_COLUMNS].describe().T
+    return statistics
 
 
 def print_answers(worldData_cleaned):
