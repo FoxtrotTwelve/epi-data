@@ -2,7 +2,7 @@
 
 Loads, cleans, and shows the visualization of country data from supplied data from EPI.
 
-Built with Python 3.13 and pandas.
+Built with Python 3.13 and pandas and streamlit.
 
 The project covers loading the raw data and cleaning it, then exporting a cleaned version to csv. A few questions get answered about the cleaned data, and filtering functionality allows the user to narrow their search. There is also a way to view summary statistics.
 
