@@ -19,10 +19,10 @@ filters = {
     "type": set()
 }
 
-rowCount = len(worldData_cleaned)
-
 #loop to continue to see the menu unless program is exited
 while True:
+    filtered_data = worlddata.get_filtered_dataframe(worldData_cleaned, filters)
+
     print("----------MAIN MENU----------")
     print("")
 
@@ -191,8 +191,6 @@ while True:
         filters["subregion"].clear()
         filters["type"].clear()
 
-        rowCount = len(worldData_cleaned)
-
 
     elif choice == ("4"): #displays filtered data
         print("---Displaying Data with Active Filters---")
@@ -205,17 +203,10 @@ while True:
             if hasSubregionFilters == True: print(f"• Subregion: {filters_subregion_string}")
             if hasTypeFilters == True: print(f"• Type: {filters_type_string}")
         print("")
-
-        filtered_dataframe = worldData_cleaned
-
-        filtered_dataframe = worldData_cleaned
-        for filter_category, set_in_category in filters.items():
-            if set_in_category:
-                filtered_dataframe = filtered_dataframe[filtered_dataframe[filter_category].isin(set_in_category)]
-
-        rowCount = len(filtered_dataframe)
-        print(f"Showing {rowCount} of {len(worldData_cleaned)}")
+    
+        print(f"Showing {len(filtered_data)} of {len(worldData_cleaned)} countries")
 
         print("")
-        print(filtered_dataframe.drop(columns='RowID').to_string(index=False))
+        print(filtered_data.drop(columns='RowID').to_string(index=False))
+        print("")
 

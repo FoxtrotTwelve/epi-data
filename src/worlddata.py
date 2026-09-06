@@ -24,6 +24,13 @@ def load_data_and_clean(FILE_PATH=FILE_PATH):
     return worldData_cleaned
 
 
+def get_filtered_dataframe(worldData_filtered, filters):
+    for column, chosen_values in filters.items():
+        if chosen_values:
+            worldData_filtered = worldData_filtered[worldData_filtered[column].isin(chosen_values)]
+
+    return worldData_filtered
+
 
 def print_answers(worldData_cleaned):
     #Which continent has the most countries in the data?
