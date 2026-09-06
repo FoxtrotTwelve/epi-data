@@ -13,6 +13,7 @@ The project covers loading the raw data and cleaning it, then exporting a cleane
 - Python 3.13.15
 - pandas 3.0.5
 - numpy 2.5.2 (a pandas dependency and installs with it).
+- streamlit 1.63.0
 
 ## How to run
 
@@ -29,6 +30,15 @@ python -m venv .venv
 ```
 
 The last line is the only one you need if the repository and python/panda are already intalled. The menu is interactive, so run it in a terminal rather than an output pane.
+
+For the secondary GUI, install with:
+```
+.venv\Scripts\python.exe -m pip install pandas streamlit
+```
+Then run with:
+```
+.venv\Scripts\streamlit.exe run src\app.py
+```
 
 ## Cleaning assumptions
 
@@ -47,5 +57,8 @@ Some missing values are also correct, like with Antarctica not having a populati
 
 ## Answers to the questions
 
-Run the program, these should appear in the console app after the cleaned data is listed.
+Run the program via the console app, these should appear after the cleaned data is listed and before the menu.
 
+## Visualization
+
+This will appear in the GUI only. The bar charts are average population density by continent and subregion because these seemed more interesting than by region.
