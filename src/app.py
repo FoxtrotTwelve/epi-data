@@ -55,10 +55,24 @@ else:
     st.write("")
 
     #Bonus: "bar chart visualisation of the average population density by region for the filtered data"
-    st.subheader("Average Population Density by Region:")
+    #st.subheader("Average Population Density by Region:")
+    #st.bar_chart(
+        #worlddata.get_population_density_region(worldData_filtered),
+        #x_label="Region",
+        #y_label="People per km²"
+    #)
+    
+    st.subheader("Average Population Density by Continent:")
     st.bar_chart(
-        worlddata.get_population_density(worldData_filtered),
-        x_label="Region",
+        worlddata.get_population_density_continent(worldData_filtered),
+        x_label="Continent",
+        y_label="People per km²"
+    )
+
+    st.subheader("Average Population Density by Subregion:")
+    st.bar_chart(
+        worlddata.get_population_density_subregion(worldData_filtered),
+        x_label="Subregion",
         y_label="People per km²"
     )
 

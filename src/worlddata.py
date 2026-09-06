@@ -67,6 +67,17 @@ def print_answers(worldData_cleaned):
     return f"Continent with Most Countries: {continent_mode[0]}\nRegion (Not Continent) with the Largest Area: {region_largest_area}\nCountry with Highest Life Expectency: {highest_life_exp}\nSubregion with Max Average GDP: {subregion_max} (Average GDP: {subregion_dataframe.max()})\nSubregion with Min Average GDP: {subregion_min} (Average GDP: {subregion_dataframe.min()})"
 
 
-def get_population_density(worldData_filtered):
+#This was for the bonus question
+def get_population_density_region(worldData_filtered):
     density = worldData_filtered['pop'] / worldData_filtered['area_km2']
     return density.groupby(worldData_filtered['region_un']).mean()
+
+#Replicated the above but for continent because that's more interesting
+def get_population_density_continent(worldData_filtered):
+    density = worldData_filtered['pop'] / worldData_filtered['area_km2']
+    return density.groupby(worldData_filtered['continent']).mean()
+
+#population density by subregion
+def get_population_density_subregion(worldData_filtered):
+    density = worldData_filtered['pop'] / worldData_filtered['area_km2']
+    return density.groupby(worldData_filtered['subregion']).mean()
