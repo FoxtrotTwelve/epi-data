@@ -52,6 +52,19 @@ else:
     #Displays the stats:
     st.subheader("Statistics Summary")
     st.dataframe(worlddata.get_summary_statistics(worldData_filtered))
+    st.write("")
+
+    #Bonus: "bar chart visualisation of the average population density by region for the filtered data"
+    st.subheader("Average Population Density by Region:")
+    st.bar_chart(
+        worlddata.get_population_density(worldData_filtered),
+        x_label="Region",
+        y_label="People per km²"
+    )
+
+
+
+
 
 
 
