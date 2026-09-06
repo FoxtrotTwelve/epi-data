@@ -15,3 +15,7 @@ for column in ['continent', 'region_un', 'subregion', 'type']:
 worldData_filtered = worlddata.get_filtered_dataframe(worldData_cleaned, filters)
 
 st.write(f"Showing {len(worldData_filtered)} of {len(worldData_cleaned)} countries")
+st.write(worldData_filtered)
+
+
+
