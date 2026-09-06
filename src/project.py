@@ -3,6 +3,7 @@ import worlddata
 
 pd.set_option('display.max_rows', None) #Allows me to see the data in full
 pd.set_option('display.max_columns', None)
+pd.set_option('display.float_format', '{:,.2f}'.format) #fixes the exponent float issue that has been annoying me
 
 worldData_cleaned = worlddata.load_data_and_clean()
 print(worldData_cleaned)
@@ -67,11 +68,12 @@ while True:
     print("2. Remove Filter")
     print("3. Clear All Filters")
     print("4. View Data with Applied Filters")
-    print("5. Exit")
+    print("5. View Statistics Summary of Current Filters")
+    print("6. Exit")
     print("-----------------------------")
 
     choice = input("> ")
-    if choice == ("5"): #exits program
+    if choice == ("6"): #exits program
         break
     elif choice == ("1"): #presents a menu of filter categories to add
         print("Filter Categories: ")
@@ -208,5 +210,12 @@ while True:
 
         print("")
         print(filtered_data.drop(columns='RowID').to_string(index=False))
+        print("")
+
+
+    elif choice == ("5"):
+        print("---Statistics of Active Filter Selection---")
+        print("")
+        print(worlddata.get_summary_statistics(filtered_data))
         print("")
 
