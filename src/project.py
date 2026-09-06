@@ -216,6 +216,20 @@ while True:
     elif choice == ("5"):
         print("---Statistics of Active Filter Selection---")
         print("")
-        print(worlddata.get_summary_statistics(filtered_data))
+        if hasFilters == False:
+            print(f"Active filters: None")
+        else:
+            print(f"Active filters:")
+            if hasContinentFilters == True: print(f"• Continents: {filters_continent_string}")
+            if hasRegionFilters == True: print(f"• Region: {filters_region_string}")
+            if hasSubregionFilters == True: print(f"• Subregion: {filters_subregion_string}")
+            if hasTypeFilters == True: print(f"• Type: {filters_type_string}")
+        print("")
+        print(f"Showing {len(filtered_data)} of {len(worldData_cleaned)} countries")
+        print("")
+        if len(filtered_data) == 0:
+            print("No countries match the current filters.")
+        else:
+            print(worlddata.get_summary_statistics(filtered_data))
         print("")
 
